@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>Articles Page</title>
+    {% include 'head_part.html' %}
+</head>
+<body>
+<div id="wrapper" class="rootindex">
+    {% include 'header.html' %}
+    <div id="container">
+        <div>{{ mdlist | safe }}</div>
+        <div class="head big sub" style="display: none;"></div>
+    </div>
+    {% include 'footer.html' %}
+</div>
+</body>
+</html>

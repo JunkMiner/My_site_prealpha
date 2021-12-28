@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>狗鸭笔记 - 首页 - 欢迎光临小铭的个人主页</title>
+    {% include 'head_part.html' %}
+</head>
+<body>
+<div id="wrapper" class="rootindex">
+    {% include 'header.html' %}
+    <div id="container">
+        <!--        <div style="text-align: center;">-->
+        <!--            <form action="/fanyi" method="GET">-->
+        <!--                <label style="margin-bottom: 20px; display: block;">翻译(内测)请在下面键入网址试下：<br></label>-->
+        <!--                <input class="fanyi1" type="url" name="url" value="http://"-->
+        <!--                       style="width: 300px; height: 35px; border-radius: 17px; margin: 10px 0;" required><br>-->
+        <!--                <input type="submit" value="前进"-->
+        <!--                       style="width: 65px; height: 35px; font-size: 23px; padding: 0; letter-spacing: 2px;">-->
+        <!--            </form>-->
+        <!--            <hr>-->
+        <!--            <form action="/fanyi" method="GET">-->
+        <!--                <input class="fanyi1" type="url" name="url" value="https://"-->
+        <!--                       style="width: 300px; height: 35px; border-radius: 17px; margin: 10px 0;" required><br>-->
+        <!--                <input type="submit" value="前进"-->
+        <!--                       style="width: 65px; height: 35px; font-size: 23px; padding: 0; letter-spacing: 2px;">-->
+        <!--            </form>-->
+        <!--        </div>-->
+        <!--        <hr>-->
+        <br>
+        <div>{{ mdlist | safe }}</div>
+        <div class="head big sub" style="display: none;"></div>
+    </div>
+    {% include 'footer.html' %}
+</div>
+</body>
+</html>

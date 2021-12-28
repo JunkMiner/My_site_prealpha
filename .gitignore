@@ -1,0 +1,8 @@
+geoipdb/
+markdown/*
+.idea
+.vscode
+__pycache__
+chglinkalpha.py
+transalpha.py
+static_files/

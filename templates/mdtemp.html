@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>文章页面</title>
+    {% include 'head_part.html' %}
+    <link rel="stylesheet" href="/static_files/css/styles.css">
+</head>
+<body>
+<div id="wrapper" class="mdtemp">
+    {% include 'header.html' %}
+    <div id="container">
+        <div>{{ stdin | safe }}</div>
+        <div class="head big sub" style="display: none;"></div>
+    </div>
+    {% include 'footer.html' %}
+</div>
+</body>
+</html>

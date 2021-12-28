@@ -1,0 +1,422 @@
+html, body {
+    overflow-x: hidden;
+    margin: 0;
+    height: 100%;
+    box-sizing: border-box;
+    scroll-padding-top: 60px;
+    /*font-family: "Rubik Regular", sans-serif, serif;*/
+}
+
+@font-face {
+    font-family: "JetBrains Mono Regular";
+    src: url("/index/static_files/JetBrainsMono-Regular.woff2") format('woff2');
+}
+
+#wrapper {
+    overflow-x: hidden;
+    margin: 0;
+    height: 100%;
+    box-sizing: border-box;
+    /* Dealing with anchor links */
+    scroll-padding-top: 60px;
+}
+
+#header {
+    height: 46px;
+    background-color: lightgreen;
+    box-shadow: 0 0 12px 0 #777;
+    padding-top: 14px;
+    position: fixed;
+    width: calc(100% - 12px);
+}
+
+#inheader {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+#inheader > li {
+    display: inline-block;
+}
+
+#inheader > li > a {
+    text-decoration: none;
+    color: #444;
+    text-align: center;
+    font-size: 17px;
+    border-radius: 10px;
+    letter-spacing: 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    padding: 10px 5px 10px 5px;
+    margin-left: 9px;
+}
+
+#inheader > li > a:hover {
+    background-color: #bdf5bd;
+    color: #000;
+}
+
+#schbar {
+    width: calc(100% - 550px);
+    max-width: 550px;
+    font-family: zillaslab, palatino, "Palatino Linotype", serif;
+}
+
+#schq {
+    height: 30px;
+    border-radius: 10px;
+    margin-left: 15px;
+    width: calc(100% - 170px);
+    font-family: zillaslab, palatino, "Palatino Linotype", serif;
+}
+
+#schbtn, #mobischbtn {
+    background-color: #bdf5bd;
+    border-radius: 10px;
+    /*margin-top: 4px;*/
+    padding: 5px;
+    box-shadow: 0 0 2px 1px #777;
+}
+
+#schlabel {
+    font-size: 14px;
+}
+
+#column {
+    height: 30px;
+    border-radius: 10px;
+    width: 30px;
+    font-family: zillaslab, palatino, "Palatino Linotype", serif;
+}
+
+#mobiclose {
+    display: none;
+}
+
+#mobinav {
+    top: 0;
+    height: 40px;
+    background-color: lightgreen;
+    box-shadow: 0 0 12px 0 #777;
+    padding-top: 0;
+}
+
+#mobibtn {
+    background-color: #bdf5bd;
+    border-radius: 10px;
+    margin-top: 2px;
+    margin-left: 12px;
+    padding: 1px;
+    box-shadow: 0 0 2px 1px #777;
+}
+
+#mobischbar {
+    display: inline-block;
+    text-align: center;
+    width: calc(100% - 60px);
+}
+
+#mobischq {
+    height: 30px;
+    width: calc(100% - 60px);
+    border-radius: 10px;
+    font-family: zillaslab, palatino, "Palatino Linotype", serif;
+}
+
+#container {
+    /* position: relative; */
+    top: 0;
+    margin: 135px 25px 20px;
+    min-height: calc(100% - 190px);
+}
+
+/* 以下为index页面的内容 */
+#container > div > h1 {
+    text-align: center;
+}
+
+.mdhref {
+    text-decoration: none;
+    display: block;
+}
+
+.mdtitle {
+    font-family: zillaslab, palatino, "Palatino Linotype", serif;
+    font-size: 34px;
+    color: #74390f;
+}
+
+.mddesc {
+    font-size: 16px;
+    color: #0b5a5a;
+    max-height: 100px;
+    overflow: hidden;
+}
+
+.mdlm {
+    font-size: 16px;
+    color: rgb(71, 37, 71);
+    text-align: right;
+    font-family: "JetBrains Mono Regular", 'Courier New', Courier, monospace;
+}
+
+/* 以下为result页面的内容 */
+.resblock {
+    border-radius: 20px;
+    display: inline-block;
+    text-decoration: none;
+    background-color: #f4fef4;
+    margin: 4px;
+    padding: 6px;
+    overflow: hidden;
+}
+
+.resblock:hover {
+    background-color: #bdf5bd;
+}
+
+.resblock:visited {
+    background-color: #d4ffff;
+}
+
+.resnum {
+    float: left;
+    color: #45816e;
+    font-size: 20px;
+}
+
+.restitle {
+    color: #22f;
+    font-size: 25px;
+    height: 33px;
+    overflow: hidden;
+}
+
+.resdes {
+    color: #444;
+    font-size: 13px;
+    height: 102px;
+    overflow: hidden;
+}
+
+.reshref {
+    color: #924a17;
+    font-size: 16px;
+    height: 21px;
+    overflow: hidden;
+}
+
+.resdate {
+    font-size: 14px;
+    margin-right: 18px;
+}
+
+.resdetail {
+    text-align: right;
+    height: 22px;
+    overflow: hidden;
+}
+
+.resdelta {
+    font-size: 14px;
+    text-decoration: none;
+    color: #45816e;
+}
+
+.resdelta:hover {
+    color: rgb(216, 128, 99);
+}
+
+.head {
+    font-size: 60px;
+    color: rgb(83, 35, 0);
+    font-family: 'Courier New', Courier, monospace;
+    padding-left: 10%;
+}
+
+.big {
+    font-size: 35px;
+    font-family: zillaslab, palatino, "Palatino Linotype", serif;
+    padding-left: 10%;
+}
+
+.sub {
+    font-size: 48px;
+    text-align: center;
+    font-family: zillaslab, palatino, "Palatino Linotype", serif;
+    padding-top: 6%;
+}
+
+#loading {
+    font-size: 20px;
+    text-align: center;
+    color: #f00;
+    padding-top: 30px;
+    margin-bottom: 20px;
+}
+
+#bottom > div {
+    background-color: #333;
+}
+
+#bottom {
+    box-shadow: 0 0 12px 0 #777;
+    font-size: 14px;
+    color: #999;
+    background-color: #333;
+    height: 28px;
+    padding-top: 7px;
+    text-align: center;
+    font-family: "JetBrains Mono Regular", serif;
+}
+
+#bottom a {
+    text-decoration: none;
+    color: #999;
+}
+
+#bottom a:hover {
+    color: lightgreen;
+}
+
+.error {
+    cursor: url(/index/static_files/icons/face-with-tears-of-joy.png), default;
+}
+
+#error_info {
+    font-family: "JetBrains Mono Regular", 'Courier New', Courier, monospace;
+}
+
+.query {
+    background-color: #ddd;
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid rgb(200, 200, 200);
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    width: 100%;
+}
+
+td {
+    border: 1px solid rgb(190, 190, 190);
+    padding: 10px 20px;
+}
+
+tr > td:first-child {
+    max-width: 15px;
+}
+
+tr > td:nth-child(0n+2) {
+    max-width: 200px;
+}
+
+tr:nth-child(even) td {
+    background-color: rgb(250, 250, 250);
+}
+
+tr:nth-child(odd) td {
+    background-color: rgb(245, 245, 245);
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    background-color: #90ee90;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: #bdf5bd;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #90ee90;
+    border-radius: 12px;
+    -webkit-box-shadow: inset 0 0 5px #777;
+    background-image: radial-gradient(circle, #f4fef4, #90ee90);
+}
+
+::-webkit-scrollbar-thumb:active {
+    -webkit-box-shadow: none;
+    border: 3px dotted #777;
+    background-image: radial-gradient(circle, #f4fef4, rgb(255, 195, 172));
+}
+
+::-webkit-scrollbar-thumb:hover {
+    -webkit-box-shadow: none;
+    border: 2px solid #777;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f4fef4;
+    border-radius: 12px;
+    -webkit-box-shadow: inset 0 0 5px #777;
+}
+
+/* Buttons */
+::-webkit-scrollbar-button {
+    border-style: solid;
+    height: 12px;
+    width: 12px;
+}
+
+/* below are the display of scrollbar */
+/* Up */
+::-webkit-scrollbar-button:vertical:decrement {
+    border-width: 0 6px 10px 6px;
+    border-color: transparent transparent #777 transparent;
+}
+
+::-webkit-scrollbar-button:vertical:decrement:hover {
+    border-color: transparent transparent #ccc transparent;
+}
+
+::-webkit-scrollbar-button:vertical:decrement:active {
+    border-color: transparent transparent rgb(255, 195, 172) transparent;
+}
+
+
+/* Down */
+::-webkit-scrollbar-button:vertical:increment {
+    border-width: 10px 6px 0 6px;
+    border-color: #777 transparent transparent transparent;
+}
+
+::-webkit-scrollbar-button:vertical:increment:hover {
+    border-color: #ccc transparent transparent transparent;
+}
+
+::-webkit-scrollbar-button:vertical:increment:active {
+    border-color: rgb(255, 195, 172) transparent transparent transparent;
+}
+
+/* Left */
+::-webkit-scrollbar-button:horizontal:decrement {
+    border-width: 6px 10px 6px 0;
+    border-color: transparent #777 transparent transparent;
+}
+
+::-webkit-scrollbar-button:horizontal:decrement:hover {
+    border-color: transparent #ccc transparent transparent;
+}
+
+::-webkit-scrollbar-button:horizontal:decrement:active {
+    border-color: transparent rgb(255, 195, 172) transparent transparent;
+}
+
+/* Right */
+::-webkit-scrollbar-button:horizontal:increment {
+    border-width: 6px 0 6px 10px;
+    border-color: transparent transparent transparent #777;
+}
+
+::-webkit-scrollbar-button:horizontal:increment:hover {
+    border-color: transparent transparent transparent #ccc;
+}
+
+::-webkit-scrollbar-button:horizontal:increment:active {
+    border-color: transparent transparent transparent rgb(255, 195, 172);
+}

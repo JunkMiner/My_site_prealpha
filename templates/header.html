@@ -1,0 +1,33 @@
+<div id="header">
+    <button id="mobiclose">
+        <i class="fa-regular fa-circle-xmark"></i>
+    </button>
+    <ul id="inheader">
+        <li class="inheaderli"><a href="/index/home"><i class="fa-solid fa-house"></i>&nbsp;首页</a></li>
+        <li class="inheaderli"><a href="/index/notes"><i class="fa-solid fa-note-sticky"></i>&nbsp;笔记</a></li>
+        <li class="inheaderli"><a href="/index/status" title="The status of the server."><i class="fa-solid fa-server"></i>&nbsp;状态</a></li>
+        <li class="inheaderli"><a href="/index/tools"><i class="fa-solid fa-toolbox"></i>&nbsp;工具</a></li>
+        <li class="inheaderli"><a href="/index/links"><i class="fa-solid fa-link"></i>&nbsp;链接</a></li>
+        <li id='schbar'>
+            <form action="/index/s" method="GET">
+                <label for="schq"></label>
+                <input id="schq" type="text" name="q" placeholder="Press enter to search..." required>
+                <input class="fas" id="schbtn" type="submit" value="&#xf002;" style="font-size: 20px;" title="Search...">
+                <label id="schlabel" for="column" title="Column">&nbsp;&nbsp;<i class="fa-solid fa-table-columns fa-lg"></i>&nbsp;&nbsp;</label>
+                <input id="column" type="number" name="column" value="2" min="1" max="6" required>
+            </form>
+        </li>
+    </ul>
+</div>
+<div id="mobinav">
+    <button id="mobibtn">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <div id="mobischbar">
+        <form action="/index/s" method="GET">
+            <label for="mobischq"></label>
+            <input id="mobischq" type="text" name="q" placeholder="Touch me to search..." required>
+            <input class="fas" id="mobischbtn" type="submit" value="&#xf002;" style="font-size: 20px;" title="Search...">
+        </form>
+    </div>
+</div>

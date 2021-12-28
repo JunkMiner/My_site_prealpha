@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>对不起，您访问的网页不存在</title>
+    {% include 'head_part.html' %}
+</head>
+<body>
+<div id="wrapper" class="error">
+    {% include 'header.html' %}
+    <div id="container">
+        <div class="head"><i class="fa-regular fa-face-grin-squint-tears"></i>&nbsp;&nbsp;Error {{ error_code }}</div>
+<!--        <div class="big" style="text-align: center; padding-left: 0;">Not Found</div>-->
+<!--        <div class="sub">对不起，您访问的网页不存在</div>-->
+        <div>
+            <br>
+            <hr>
+            <br>
+            <i class="fa-solid fa-circle-info fa-2x"></i>
+            <br>
+            <br>
+            <code style="font-size: 20px;" id="error_info">{{ error_info }}</code>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+</div>
+</body>
+</html>
