@@ -1,0 +1,25 @@
+#bottom
+  %div
+    %span.fa-lg
+      %a{rel: 'license', href: 'https://creativecommons.org/licenses/by-nc-sa/3.0/cn/'}
+        %i.fa-brands.fa-creative-commons
+        %i.fa-brands.fa-creative-commons-by
+        %i.fa-brands.fa-creative-commons-nc
+        %i.fa-brands.fa-creative-commons-sa
+    %span!= '&nbsp;'
+    %span
+      %i.fas.fa-location-dot
+      %a{href: "/index/ip/#{request.ip}"}= '(IP:' << request.ip << ')'
+    %span!= '&nbsp;'
+    %span
+      %a{href: 'https://github.com/JunkMiner'}
+        %i.fa-brands.fa-github.fa-lg
+    %span!= '&nbsp;'
+    %span
+      %i.far.fa-copyright
+      %span 小铭
+      %span= '2021-' << Time.now.year.to_s
+    %span!= '&nbsp;'
+    %span
+      %a{href: 'https://beian.miit.gov.cn', target: '_blank'} 粤ICP备2021178470号-1
+%script{type: 'text/javascript', src: '/index/static_files/js/main.js'}

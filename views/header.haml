@@ -1,0 +1,35 @@
+#header
+  %button#mobiclose
+    %i.far.fa-circle-xmark
+  %ul#inheader
+    %li.inheaderli
+      %a{href: '/index/home'}
+        %i.fas.fa-house
+        %span 首页
+    %li.inheaderli
+      %a{href: '/index/home'}
+        %i.fas.fa-note-sticky
+        %span 笔记
+    %li.inheaderli
+      %a{href: '/index/home'}
+        %i.fas.fa-toolbox
+        %span 工具
+    %li.inheaderli
+      %a{href: '/index/home'}
+        %i.fas.fa-link
+        %span 链接
+    %li#schbar
+      %form{action: '/index/s', method: 'GET'}
+        %input#schq{type: 'text', name: 'q', placeholder: 'Press enter to search...', required: true}/
+        %input#schbtn{type: 'submit', value: '搜索', style: 'font-size: 20px;', title: 'search'}/
+        %label#schlabel{for: 'column', title: 'Column'}
+          %i.fas.fa-table-columns.fa-lg
+        %input#column{type: 'number', name: 'column', value: '2', min: '1', max: '6', required: true}/
+  #mobinav
+    %button#mobibtn
+      %i.fas.fa-bars
+    #mobischbar
+      %form{action: '/index/s', method: 'GET'}
+        %input#mobischq{type: 'text', name: 'q', placeholder: 'Touch me to search...', required: true}/
+        %input#mobischbtn{type: 'submit', value: '搜索', style: 'font-size: 20px;', title: 'search'}
+          %i.far.fa-search
