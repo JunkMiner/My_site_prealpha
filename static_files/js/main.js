@@ -45,6 +45,10 @@ function mobile_compatible() {
             if (dq('#schbar')) {
                 dq('#schbar').style.display = 'none';
             }
+            if (dq('#la-1')) {
+                dq('#la-1').style.display = 'none';
+                dq('#la-2').style.display = 'block';
+            }
         } else if (window.innerWidth >= 818) {
             if (dq('.head')) {
                 dq('.head').style.fontSize = '60px';
@@ -60,6 +64,10 @@ function mobile_compatible() {
             container.style.minHeight = 'calc(100% - 190px)';
             if (dq('#schbar')) {
                 dq('#schbar').style.display = 'inline-block';
+            }
+            if (dq('#la-1')) {
+                dq('#la-2').style.display = 'none';
+                dq('#la-1').style.display = 'block';
             }
         }
 
