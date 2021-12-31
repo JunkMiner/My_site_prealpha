@@ -10,9 +10,9 @@ import requests
 from bson import ObjectId
 from flask import Flask, render_template, render_template_string, request, redirect, stream_with_context, Response
 
-from chglinkalpha import chglink
+# from chglinkalpha import chglink
 from markdown import markdown
-from transalpha import init_trans
+# from transalpha import init_trans
 
 # from pymongo import MongoClient
 

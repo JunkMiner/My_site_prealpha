@@ -5,7 +5,7 @@
     = haml :head_part
   %body
     .root.index#wrapper
-      = haml :header
+      = haml :header, :escape_html => false
       #container
         %br/
         -#mdlist

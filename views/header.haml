@@ -21,8 +21,9 @@
     %li#schbar
       %form{action: '/index/s', method: 'GET'}
         %input#schq{type: 'text', name: 'q', placeholder: 'Press enter to search...', required: true}/
-        %input#schbtn{type: 'submit', value: '搜索', style: 'font-size: 20px;', title: 'search'}/
+        %input.fas#schbtn{type: 'submit', value: '&#xf002;', style: 'font-size: 20px;', title: 'search'}/
         %label#schlabel{for: 'column', title: 'Column'}
+          %span!= ' '
           %i.fas.fa-table-columns.fa-lg
         %input#column{type: 'number', name: 'column', value: '2', min: '1', max: '6', required: true}/
   #mobinav
@@ -31,5 +32,4 @@
     #mobischbar
       %form{action: '/index/s', method: 'GET'}
         %input#mobischq{type: 'text', name: 'q', placeholder: 'Touch me to search...', required: true}/
-        %input#mobischbtn{type: 'submit', value: '搜索', style: 'font-size: 20px;', title: 'search'}
-          %i.far.fa-search
+        %input.fas#mobischbtn{type: 'submit', value: Rack::Utils.escape_html('&#xf002;'), style: 'font-size: 20px;', title: 'search'}/
