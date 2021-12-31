@@ -1,0 +1,21 @@
+!!! 5
+%html{lang: 'zh-CN'}
+  %head
+    %title 对不起，您访问的网页不存在
+    = haml :head_part
+  %body
+    .error#wrapper
+      = haml :header
+      #container
+        .head
+          %i.far.fa-face-grin-squint-tears
+          %span ERROR 404
+        %div
+          %br/
+          %hr/
+          %br/
+          %i.fas.fa-circle-info.fa-3x
+          %br/
+          %br/
+          %code#error_info{style: 'font-size: 18px;'} 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+      = haml :footer

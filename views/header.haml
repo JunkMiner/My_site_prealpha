@@ -23,7 +23,7 @@
         %input#schq{type: 'text', name: 'q', placeholder: 'Press enter to search...', required: true}/
         %input.fas#schbtn{type: 'submit', value: '&#xf002;', style: 'font-size: 20px;', title: 'search'}/
         %label#schlabel{for: 'column', title: 'Column'}
-          %span!= ' '
+          != ' '
           %i.fas.fa-table-columns.fa-lg
         %input#column{type: 'number', name: 'column', value: '2', min: '1', max: '6', required: true}/
   #mobinav

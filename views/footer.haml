@@ -1,22 +1,29 @@
 #bottom
   %div
-    %span.fa-lg
+    %span
       %a{rel: 'license', href: 'https://creativecommons.org/licenses/by-nc-sa/3.0/cn/'}
-        %i.fa-brands.fa-creative-commons
-        %i.fa-brands.fa-creative-commons-by
-        %i.fa-brands.fa-creative-commons-nc
-        %i.fa-brands.fa-creative-commons-sa
+        %i.fa-brands.fa-creative-commons.fa-lg
+        %i.fa-brands.fa-creative-commons-by.fa-lg
+        %i.fa-brands.fa-creative-commons-nc.fa-lg
+        %i.fa-brands.fa-creative-commons-sa.fa-lg
     %span!= '&nbsp;'
     %span
-      %i.fas.fa-location-dot
-      %a{href: "/index/ip/#{request.ip}"}= '(IP:' << request.ip << ')'
+      %a{href: "/index/ip/#{request.ip}"}
+        %i.fas.fa-location-dot.fa-lg
+        = '(IP:' << request.ip << ')'
     %span!= '&nbsp;'
     %span
-      %a{href: 'https://github.com/JunkMiner'}
+      %i.fas.fa-clock.fa-lg
+      = Time.now.to_s
+    %span!= '&nbsp;'
+    %span
+      %a{href: 'https://github.com/JunkMiner', title: 'GitHub'}
         %i.fa-brands.fa-github.fa-lg
+      %a{href: '/rss', title: 'RSS'}
+        %i.fas.fa-square-rss.fa-lg
     %span!= '&nbsp;'
     %span
-      %i.far.fa-copyright
+      %i.far.fa-copyright.fa-lg
       %span 小铭
       %span= '2021-' << Time.now.year.to_s
     %span!= '&nbsp;'
