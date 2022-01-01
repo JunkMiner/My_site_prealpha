@@ -7,15 +7,15 @@
         %i.fas.fa-house
         %span 首页
     %li.inheaderli
-      %a{href: '/index/home'}
+      %a{href: '/index/notes'}
         %i.fas.fa-note-sticky
         %span 笔记
     %li.inheaderli
-      %a{href: '/index/home'}
+      %a{href: '/index/tools'}
         %i.fas.fa-toolbox
         %span 工具
     %li.inheaderli
-      %a{href: '/index/home'}
+      %a{href: '/index/links'}
         %i.fas.fa-link
         %span 链接
     %li#schbar
@@ -23,13 +23,13 @@
         %input#schq{type: 'text', name: 'q', placeholder: 'Press enter to search...', required: true}/
         %input.fas#schbtn{type: 'submit', value: '&#xf002;', style: 'font-size: 20px;', title: 'search'}/
         %label#schlabel{for: 'column', title: 'Column'}
-          != ' '
+          != '&nbsp;'
           %i.fas.fa-table-columns.fa-lg
         %input#column{type: 'number', name: 'column', value: '2', min: '1', max: '6', required: true}/
-  #mobinav
-    %button#mobibtn
-      %i.fas.fa-bars
-    #mobischbar
-      %form{action: '/index/s', method: 'GET'}
-        %input#mobischq{type: 'text', name: 'q', placeholder: 'Touch me to search...', required: true}/
-        %input.fas#mobischbtn{type: 'submit', value: Rack::Utils.escape_html('&#xf002;'), style: 'font-size: 20px;', title: 'search'}/
+#mobinav
+  %button#mobibtn{title: 'options'}
+    %i.fas.fa-bars
+  #mobischbar
+    %form{action: '/index/s', method: 'GET'}
+      %input#mobischq{type: 'text', name: 'q', placeholder: 'Touch me to search...', required: true}/
+      %input.fas#mobischbtn{type: 'submit', value: '&#xf002;', style: 'font-size: 20px;', title: 'search'}/

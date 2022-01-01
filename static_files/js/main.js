@@ -41,7 +41,7 @@ function mobile_compatible() {
             }
             header.style.display = 'none';
             dq('#mobinav').style.display = 'block';
-            container.style.minHeight = 'calc(100% - 170px)';
+            container.style.minHeight = 'calc(100% - 240px)';
             if (dq('#schbar')) {
                 dq('#schbar').style.display = 'none';
             }
@@ -104,7 +104,7 @@ function mobile_compatible() {
             inheader.style.textAlign = 'start';
             for (let i = 0; i < inheaderli.length; i++) {
                 inheaderli[i].style.display = 'block';
-                inheaderli[i].style.marginTop = '20px';
+                inheaderli[i].style.marginTop = '8px';
             }
             dq('#mobiclose').style.display = 'block';
         }

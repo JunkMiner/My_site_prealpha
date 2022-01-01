@@ -1,5 +1,8 @@
 require 'sinatra'
 
+# use this to display the fontawesome icons in the attrs
+set :haml, :escape_attrs => false
+
 get '/' do
   status 302
   headers 'Location' => '/home'
