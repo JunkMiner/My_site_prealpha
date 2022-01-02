@@ -25,7 +25,13 @@
         %label#schlabel{for: 'column', title: 'Column'}
           != '&nbsp;'
           %i.fas.fa-table-columns.fa-lg
-        %input#column{type: 'number', name: 'column', value: '2', min: '1', max: '6', required: true}/
+        %input#column{type: 'number', name: 'column', value: '2', min: '1', max: '6', required: true}/        
+    %li
+      %input{oninput: 'hueRotateInput();', type: 'range', name: 'hue-rotate', id: 'hue-rotate', min: '0', max: '360', value: '0', style: 'vertical-align: text-top; cursor: pointer;'}/
+      %label#hue-rotate-label{for: 'hue-rotate', title: '(色相旋转)<img>标签除外'} 切换主题
+    %li
+      %button#change-theme-btn{onclick: 'changeTheme();', style: 'vertical-align: text-top; cursor: pointer;'}
+        %i.fas#change-theme-i
 #mobinav
   %button#mobibtn{title: 'options'}
     %i.fas.fa-bars

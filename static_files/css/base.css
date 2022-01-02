@@ -19,6 +19,7 @@ html, body {
     box-sizing: border-box;
     /* Dealing with anchor links */
     scroll-padding-top: 60px;
+    background-color: #fff;
 }
 
 #header {
@@ -45,18 +46,20 @@ html, body {
     color: #444;
     text-align: center;
     font-size: 17px;
-    border-radius: 10px;
+    border-radius: 15px;
     letter-spacing: 0;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 700;
-    padding: 15px 5px 10px 5px;
-    margin: 0 4px;
+    padding: 15px 9px 10px;
+    margin: 0 2px;
     display: block;
 }
 
 #inheader > li > a:hover {
     background-color: #bdf5bd;
     color: #000;
+    border: 3px dashed #4ee44e;
+    padding: 12px 6px 7px;
 }
 
 #schbar {
@@ -68,7 +71,7 @@ html, body {
 #schq {
     height: 30px;
     border-radius: 10px;
-    margin-left: 15px;
+    margin-left: 0;
     width: calc(100% - 170px);
     font-family: zillaslab, palatino, "Palatino Linotype", serif;
 }
@@ -351,7 +354,7 @@ img {
     position: relative;
     z-index: 1;
     box-shadow: none;
-    background: #f5f5f5;
+    background: #eee;
     border-radius: 4px;
     overflow: hidden;
 }
@@ -377,14 +380,14 @@ h6 {
 
 .licensing-box a {
     font-size: 0.85rem !important;
-    color: #7a7a7a;
+    color: #6a6a6a;
     cursor: pointer;
     text-decoration: none;
     font-family: "JetBrains Mono Regular", 'Courier New', Courier, monospace;
 }
 
 .licensing-box a:hover {
-    color: #65ff65;
+    color: #195319;
 }
 
 .licensing-box a:active {

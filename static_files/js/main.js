@@ -4,6 +4,7 @@ const dq = x => document.querySelector(x);
 const dqAll = x => document.querySelectorAll(x);
 const dc = x => document.createElement(x);
 const wi = window.innerHeight;
+let body = dq('body');
 let header = dq('#header');
 let inheader = dq('#inheader');
 let inheaderli = dqAll('.inheaderli');
@@ -327,7 +328,7 @@ function getquery(query) {
     return false;
 }
 
-if (getquery('column') <= 6 && getquery('column') >= 1) {
+if (getquery('column') <= 6 && getquery('column') >= 1 && dq('#schcolumn')) {
     dq('#schcolumn').setAttribute('value', getquery('column'));
 }
 //这里展示的是首页
@@ -494,3 +495,64 @@ if (dq('.detail')) {
             }
         })
 }
+
+// the hue bar of the header
+let isDarkTheme = 0;
+
+function getCookie(key) {
+    let myCookies = document.cookie.split('; ');
+    for (let i = 0; i < myCookies.length; i++) {
+        let cookiePair = myCookies[i].split('=');
+        if (cookiePair[0] === key) {
+            return cookiePair[1];
+        }
+    }
+    return false;
+}
+
+function changeHue(value, isdark) {
+    document.cookie = 'hue_rotate_value=' + value.toString();
+    document.cookie = 'is_dark_theme=' + isdark.toString();
+    body.style.filter = 'invert(' + isdark + ') hue-rotate(' + value + 'deg)';
+    let imgs = document.querySelectorAll('img');
+    for (let i = 0; i < imgs.length; i++) {
+        imgs[i].style.filter = 'invert(' + isdark + ') hue-rotate(' + (-Number(value)).toString() + 'deg)';
+    }
+}
+
+function changeTheme() {
+    if (isDarkTheme === 0) {
+        dq('#change-theme-i').className = 'fas fa-sun';
+        isDarkTheme = 1;
+    } else {
+        dq('#change-theme-i').className = 'fas fa-moon';
+        isDarkTheme = 0;
+    }
+    Number(dq('#hue-rotate').value) < 180 ? dq('#hue-rotate').value = Number(dq('#hue-rotate').value) + 180 : dq('#hue-rotate').value = Number(dq('#hue-rotate').value) - 180;
+    changeHue(Number(dq('#hue-rotate').value), isDarkTheme);
+}
+
+if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    dq('#change-theme-i').className = 'fas fa-sun';
+    isDarkTheme = 1;
+    dq('#hue-rotate').value = 180;
+} else {
+    dq('#change-theme-i').className = 'fas fa-moon';
+    isDarkTheme = 0;
+}
+
+if (getCookie('hue_rotate_value')) {
+    dq('#hue-rotate').value = Number(getCookie('hue_rotate_value'));
+}
+if (getCookie('is_dark_theme')) {
+    isDarkTheme = Number(getCookie('is_dark_theme'));
+    if (isDarkTheme === 1) {
+        dq('#change-theme-i').className = 'fas fa-sun';
+    } else {
+        dq('#change-theme-i').className = 'fas fa-moon';
+    }
+}
+
+changeHue(dq('#hue-rotate').value, isDarkTheme);
+function hueRotateInput() { changeHue(dq('#hue-rotate').value, isDarkTheme); }
+// end of the hue bar of the header
