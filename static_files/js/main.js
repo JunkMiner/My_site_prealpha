@@ -12,6 +12,9 @@ let container = dq('#container');
 let finish = true;
 let respage = 1;
 const baseurl = '/result';
+let scrollTop = dq('#wrapper').scrollTop;
+let preDown = dq('#wrapper').scrollTop;
+let preUp = dq('#wrapper').scrollTop;
 
 // begin mobile compatible
 function isscroll() {
@@ -26,6 +29,7 @@ function isscroll() {
             dq('#loading').style.display = 'none';
         }, 350)
     }
+    hideHeader();
 }
 
 function mobile_compatible() {
@@ -450,7 +454,7 @@ function loaditems(queryurl) {
                     container.appendChild(err5);
                 } else {
                     const err3 = dc('div');
-                    err3.textContent = '网络请求失败，状态码：' + res.status + ': ' + res.statusText;
+                    err3.textContent = '网络请求失败，状态码:' + res.status + ': ' + res.statusText;
                     err3.style.color = '#e00';
                     err3.style.textAlign = 'center';
                     container.appendChild(err3);
@@ -488,7 +492,7 @@ if (dq('.detail')) {
                 })
             } else {
                 const err3 = dc('div');
-                err3.textContent = '网络请求失败，状态码：' + res.status + ': ' + res.statusText;
+                err3.textContent = '网络请求失败，状态码:' + res.status + ': ' + res.statusText;
                 err3.style.color = '#e00';
                 err3.style.textAlign = 'center';
                 dq('#detdes').appendChild(err3);
@@ -556,3 +560,22 @@ if (getCookie('is_dark_theme')) {
 changeHue(dq('#hue-rotate').value, isDarkTheme);
 function hueRotateInput() { changeHue(dq('#hue-rotate').value, isDarkTheme); }
 // end of the hue bar of the header
+
+// use translate3d to the header
+function hideHeader() {
+    if (dq('#wrapper').scrollTop >= scrollTop) {
+        dq('#header').style.transform = `translate3d(0, -${dq('#wrapper').scrollTop - preDown}px, 0)`;
+        if (dq('#wrapper').scrollTop > scrollTop) {
+            preUp = dq('#wrapper').scrollTop;
+        }
+    } else {
+        if (preUp - dq('#wrapper').scrollTop < 60) {
+            // console.log(preUp, dq('#wrapper').scrollTop);
+            dq('#header').style.transform = `translate3d(0, ${-60 + preUp - dq('#wrapper').scrollTop}px, 0)`;
+        } else {
+            dq('#header').style.transform = 'translate3d(0, 0, 0)';
+        }
+        preDown = dq('#wrapper').scrollTop;
+    }
+    scrollTop = dq('#wrapper').scrollTop;
+}
