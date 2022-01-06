@@ -342,8 +342,9 @@ tr:nth-child(odd) td {
     background-color: #90ee90;
 }
 
-img {
+#container img {
     max-width: 100%;
+    cursor: pointer;
 }
 
 /*The licensing box under the markdown...*/

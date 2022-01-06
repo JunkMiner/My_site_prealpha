@@ -3,38 +3,40 @@
   %head
     %title
     = haml :head_part
-    %link{rel: 'stylesheet', type: 'text/css', href: '/index/static_files/css/styles.css'}
   %body
     .mdtemp#wrapper
       = haml :header
       #container
-        %div The notes will be there.
-        .head.big.sub{style: 'display: none;'}
-        -#Modified from wymcloud.cn
-        .licensing-box
-          .licensing-title
-            %p Title will be there.
-            %p
-              %a{href: request.url.split('?')[0].split('#')[0]}= request.url.split('?')[0].split('#')[0]
-          %div
-            .level-item
-              %div
-                %h6 发布于
-                %p.level-time 发布于
-            .level-item
-              %div
-                %h6 更新于
-                %p.level-time 更新于
-            .level-item
-              %div
-                %h6 许可协议
-                %p
-                  %a{target: '_blank', title: 'CC BY-NC-SA 3.0 CN', href: 'https://creativecommons.org/licenses/by-nc-sa/3.0/cn/'}
-                    %i.fa-lg.fab.fa-creative-commons
-                    %i.fa-lg.fab.fa-creative-commons-by
-                    %i.fa-lg.fab.fa-creative-commons-nc
-                    %i.fa-lg.fab.fa-creative-commons-sa
-          .licensing-after#la-1!= '&#xf25e;&#xf4e7;&#xf4e8;&#xf4ef;'
-          .licensing-after#la-2!= '&#xf25e;'
-        -#Modified from wymcloud.cn
+        - File.open("markdown/public/#{num}.md") do |f|
+        - title = f.gets
+        - title = title.split('# ')[1]
+        - f.rewind
+          %div= markdown f.read
+          -#Modified from wymcloud.cn
+          .licensing-box
+            .licensing-title
+              %p=title
+              %p
+                %a{href: 'https://zjm.gd.cn/index' << request.path.split('?')[0].split('#')[0]}= 'https://zjm.gd.cn/index' << request.path.split('?')[0].split('#')[0]
+            %div
+              .level-item
+                %div
+                  %h6 发布于
+                  %p.level-time 发布于
+              .level-item
+                %div
+                  %h6 更新于
+                  %p.level-time 更新于
+              .level-item
+                %div
+                  %h6 许可协议
+                  %p
+                    %a{target: '_blank', title: 'CC BY-NC-SA 3.0 CN', href: 'https://creativecommons.org/licenses/by-nc-sa/3.0/cn/'}
+                      %i.fa-lg.fab.fa-creative-commons
+                      %i.fa-lg.fab.fa-creative-commons-by
+                      %i.fa-lg.fab.fa-creative-commons-nc
+                      %i.fa-lg.fab.fa-creative-commons-sa
+            .licensing-after#la-1!= '&#xf25e;&#xf4e7;&#xf4e8;&#xf4ef;'
+            .licensing-after#la-2!= '&#xf25e;'
+          -#Modified from wymcloud.cn
       = haml :footer

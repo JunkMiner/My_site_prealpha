@@ -92,6 +92,9 @@ function mobile_compatible() {
         } else {
             dq('#header').style.width = '100%';
         }
+
+        dq('#imgdiv').style.height = `${window.innerHeight}px`;
+
     }
 
     resize();
@@ -145,10 +148,6 @@ if (dq('.mdtemp')) {
     let h3as = [];
     let h4as = [];
     let h5as = [];
-    let linenums = [];
-    let codehl = dqAll('.codehilite');
-    let pres = dqAll('.codehilite > code');
-    let yankbtns = [];
     let pcodeynk = [];
 
     for (let k = 0; k < h2s.length; k++) {
@@ -201,66 +200,7 @@ if (dq('.mdtemp')) {
     }
 
     // below are the linenums of the large codeblocks
-    let block_copy_icon = [];
 
-    for (let k = 0; k < codehl.length; k++) {
-        linenums.push(dc('div'));
-        linenums[k].style.width = '30px';
-        linenums[k].style.height = (codehl[k].clientHeight - 4).toString() + 'px';  // calculate the height of linenums
-        linenums[k].style.borderRight = '2px solid #90ee90';
-        linenums[k].style.padding = '16.6px 0 22.4px';
-        codehl[k].offsetHeight !== codehl[k].clientHeight ? linenums[k].style.borderBottom = '12px solid #90ee90' : linenums[k].style.borderBottom = '0';
-        linenums[k].style.display = 'inline-block';
-        linenums[k].style.verticalAlign = 'top';
-        linenums[k].style.backgroundColor = 'rgb(255, 204, 204)';
-        linenums[k].style.textAlign = 'right';
-        linenums[k].setAttribute('id', 'linenums' + k.toString());
-        codehl[k].before(linenums[k]);
-        // the .codehilite block's height
-        // codehl[k].style.height = 'auto';
-
-        // then add the number before each line
-        let lnumbers = [];
-        for (let m = 0; m < (linenums[k].clientHeight - 36) / 21.1; m++) {
-            lnumbers.push(dc('code'));
-            lnumbers[m].textContent = (m + 1).toString();
-            lnumbers[m].style.display = 'block';
-            // important!! the height of each little number
-            lnumbers[m].style.height = '20.4px';
-            dq('#linenums' + k.toString()).appendChild(lnumbers[m]);
-        }
-        // the yank buttons :-)
-        codehl[k].offsetHeight !== codehl[k].clientHeight ? codehl[k].style.height = (pres[k].offsetHeight + 46).toString() + 'px' : codehl[k].style.height = (pres[k].offsetHeight + 34).toString() + 'px';
-        yankbtns.push(dc('button'));
-        // yankbtns[k].textContent = '<i class="far fa-copy"></i>';
-        block_copy_icon.push(dc('i'));
-        block_copy_icon[k].setAttribute('class', 'far fa-copy');
-        pcodeynk[k].appendChild(block_copy_icon[k]);
-        yankbtns[k].style.display = 'block';
-        yankbtns[k].style.position = 'sticky';
-        yankbtns[k].style.left = 'calc(100% - 96px)';
-        yankbtns[k].style.bottom = (codehl[k].clientHeight - 3).toString() + 'px';
-        yankbtns[k].onclick = () => {
-            navigator.clipboard.writeText(pres[k].textContent).then(function () {
-                /* clipboard successfully set */
-                let tmpok = dc('span');
-                tmpok.textContent = '复制成功！';
-                tmpok.style.color = '#f00';
-                tmpok.style.display = 'block';
-                tmpok.style.fontSize = '15px';
-                linenums[k].before(tmpok);
-            }, function () {
-                /* clipboard write failed */
-                let tmpok = dc('span');
-                tmpok.textContent = '复制失败！';
-                tmpok.style.color = '#00f';
-                tmpok.style.display = 'block';
-                tmpok.style.fontSize = '15px';
-                linenums[k].before(tmpok);
-            });
-        }
-        codehl[k].appendChild(yankbtns[k]);
-    }
     // the yank buttons of the non code block
     let pcodes = dqAll('p > code');
     let non_block_copy_icon = [];
@@ -515,8 +455,8 @@ function getCookie(key) {
 }
 
 function changeHue(value, isdark) {
-    document.cookie = 'hue_rotate_value=' + value.toString();
-    document.cookie = 'is_dark_theme=' + isdark.toString();
+    document.cookie = `hue_rotate_value=${value.toString()};secure`;
+    document.cookie = `is_dark_theme=${isdark.toString()};secure`;
     body.style.filter = 'invert(' + isdark + ') hue-rotate(' + value + 'deg)';
     let imgs = document.querySelectorAll('img');
     for (let i = 0; i < imgs.length; i++) {
@@ -558,7 +498,11 @@ if (getCookie('is_dark_theme')) {
 }
 
 changeHue(dq('#hue-rotate').value, isDarkTheme);
-function hueRotateInput() { changeHue(dq('#hue-rotate').value, isDarkTheme); }
+
+function hueRotateInput() {
+    changeHue(dq('#hue-rotate').value, isDarkTheme);
+}
+
 // end of the hue bar of the header
 
 // use translate3d to the header
@@ -578,4 +522,19 @@ function hideHeader() {
         preDown = dq('#wrapper').scrollTop;
     }
     scrollTop = dq('#wrapper').scrollTop;
+}
+
+// to show the images
+let imgsInContainer = dqAll('#container img');
+for (let i = 0; i < imgsInContainer.length; i++) {
+    imgsInContainer[i].setAttribute('onclick', `imgsOnclick('${imgsInContainer[i].attributes.src.nodeValue}')`);
+}
+
+function imgsOnclick(src) {
+    dq('#imgdiv').style.display = 'block';
+    dq('#imgshow').setAttribute('src', src);
+}
+
+dq('#imgshow').onclick = () => {
+    dq('#imgdiv').style.display = 'none';
 }
