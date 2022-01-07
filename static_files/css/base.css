@@ -4,7 +4,6 @@ html, body {
     height: 100%;
     box-sizing: border-box;
     scroll-padding-top: 60px;
-    /*font-family: "Rubik Regular", sans-serif, serif;*/
 }
 
 @font-face {
@@ -287,9 +286,14 @@ html, body {
     font-family: "JetBrains Mono Regular", serif;
 }
 
+#bottom span {
+    display: inline-block;
+}
+
 #bottom a {
     text-decoration: none;
     color: #939393;
+    display: inline-block;
 }
 
 #bottom a:hover {
@@ -648,6 +652,9 @@ code.hljs {
 .window-body {
     padding: 12px 8px;
     display: block;
+    margin: -20px 0 0;
+    white-space: pre;
+    overflow: auto;
 }
 
 p > code {
@@ -671,4 +678,31 @@ p > code {
     height: 26px;
     display: inline-block;
     cursor: pointer;
+}
+
+.idv-ynk-btn:hover, .title-bar-controls button:hover {
+    box-shadow: inset -1px 1px #fff0cf, inset 1px 2px #fdd889, inset -2px 2px #fbc761, inset 2px -2px #e5a01a;
+}
+
+.idv-ynk-btn:focus, .title-bar-controls button:focus {
+    box-shadow: inset -1px 1px #cee7ff, inset 1px 2px #98b8ea, inset -2px 2px #bcd4f6, inset 1px -1px #89ade4, inset 2px -2px #89ade4;
+    outline: 1px dotted #000;
+    outline-offset: -4px;
+}
+
+.idv-ynk-btn:active, .title-bar-controls button:active {
+    box-shadow: none;
+    background: linear-gradient(180deg, #cdcac3, #e3e3db 8%, #e5e5de 94%, #f2f2f1);
+}
+
+blockquote {
+    border-left: 1rem solid #90ee90;
+    margin: 0;
+    padding: 0 30px;
+    white-space: pre-wrap;
+    background-color: #eee;
+}
+
+blockquote p {
+    margin: 0;
 }

@@ -15,6 +15,8 @@ const baseurl = '/result';
 let scrollTop = dq('#wrapper').scrollTop;
 let preDown = dq('#wrapper').scrollTop;
 let preUp = dq('#wrapper').scrollTop;
+let ttHash = dqAll('.tthash');
+let replHash = '';
 
 // begin mobile compatible
 function isscroll() {
@@ -27,9 +29,25 @@ function isscroll() {
             getquery('column') ? loaditems(baseurl + '?page=' + respage + '&column=' + getquery('column') + '&q=' + getquery('q')) : loaditems(baseurl + '?page=' + respage + '&column=1' + '&q=' + getquery('q'));
             finish = true;
             dq('#loading').style.display = 'none';
-        }, 350)
+        }, 1000)
     }
     hideHeader();
+
+    // auto hash
+    ttHash = dqAll('.tthash');
+    // console.log(dq('#wrapper').scrollTop + 60 + window.innerHeight / 2);
+    if (window.history.replaceState) {
+        for (let i = 0; i < ttHash.length; i++) {
+            if ((dq('#wrapper').scrollTop + 60 + window.innerHeight / 2) > ttHash[i].offsetTop) {
+                replHash = `#${ttHash[i].parentNode.getAttribute('id')}`;
+            }
+        }
+        if (window.location.hash !== replHash) {
+            setTimeout(() => {
+                window.history.replaceState('', '', replHash);
+            }, 500);
+        }
+    }
 }
 
 function mobile_compatible() {
@@ -94,6 +112,9 @@ function mobile_compatible() {
         }
 
         dq('#imgdiv').style.height = `${window.innerHeight}px`;
+        dq('#imgdiv').style.width = `${window.innerWidth}px`;
+        dq('#imgshow').style.maxHeight = `${window.innerHeight}px`;
+        dq('#imgshow').style.maxWidth = `${window.innerWidth}px`;
 
     }
 
@@ -274,6 +295,11 @@ if (dq('.mdtemp')) {
                 pcodes[k].style.boxShadow = 'inset 0 1px 2px grey';
             }
         }
+
+        if (window.location.hash !== '') {
+            dq('#wrapper').scrollTop = window.location.hash !== '' || dq(window.location.hash).offsetTop;
+        }
+
     });
 }
 // 文章页面格式结束
@@ -495,8 +521,8 @@ function getCookie(key) {
 }
 
 function changeHue(value, isdark) {
-    document.cookie = `hue_rotate_value=${value.toString()};secure`;
-    document.cookie = `is_dark_theme=${isdark.toString()};secure`;
+    document.cookie = `hue_rotate_value=${value.toString()}; secure; path=/; max-age=31536000`;
+    document.cookie = `is_dark_theme=${isdark.toString()}; secure; path=/; max-age=31536000`;
     body.style.filter = 'invert(' + isdark + ') hue-rotate(' + value + 'deg)';
     let imgs = document.querySelectorAll('img');
     for (let i = 0; i < imgs.length; i++) {
