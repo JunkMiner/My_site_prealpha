@@ -148,7 +148,6 @@ if (dq('.mdtemp')) {
     let h3as = [];
     let h4as = [];
     let h5as = [];
-    let pcodeynk = [];
 
     for (let k = 0; k < h2s.length; k++) {
         h2s[k].setAttribute('id', 'h2' + k.toString());
@@ -199,36 +198,83 @@ if (dq('.mdtemp')) {
         h5s[k].appendChild(h5as[k]);
     }
 
-    // below are the linenums of the large codeblocks
+    // use highlight.js
+    document.addEventListener('DOMContentLoaded', () => {
+        dqAll('code').forEach((el) => {
+            hljs.highlightElement(el);
+        });
 
-    // the yank buttons of the non code block
-    let pcodes = dqAll('p > code');
-    let non_block_copy_icon = [];
-    for (let k = 0; k < pcodes.length; k++) {
-        pcodeynk.push(dc('button'));
-        // pcodeynk[k].textContent = '<i class="far fa-copy"></i>';
-        non_block_copy_icon.push(dc('i'));
-        non_block_copy_icon[k].setAttribute('class', 'far fa-copy');
-        pcodeynk[k].appendChild(non_block_copy_icon[k]);
-        pcodeynk[k].onclick = () => {
-            navigator.clipboard.writeText(pcodes[k].textContent).then(function () {
-                /* clipboard successfully set */
-                let tmpok = dc('span');
-                tmpok.textContent = '复制成功！';
-                tmpok.style.color = '#f00';
-                pcodeynk[k].after(tmpok);
-                tmpok.style.fontSize = '15px';
-            }, function () {
-                /* clipboard write failed */
-                let tmpok = dc('span');
-                tmpok.textContent = '复制失败！';
-                tmpok.style.color = '#00f';
-                pcodeynk[k].after(tmpok);
-                tmpok.style.fontSize = '15px';
-            });
+        // the yank buttons of the non code block
+
+        let pcodeynk = [];  // now it is the xp title bar
+        let pcodes = dqAll('p > code');
+        let non_block_copy_icon = [];
+        let titleBars = [];
+        let titleBarTexts = [];
+        let titleBarControls = [];
+        // <div class="title-bar">
+        //   <div class="title-bar-text">
+        //     Command Prompt
+        //   </div>
+        //   <div class="title-bar-controls">
+        //     <button aria-label="Minimize"></button>
+        //     <button aria-label="Maximize"></button>
+        //     <button aria-label="Close"></button>
+        //   </div>
+        // </div>
+        for (let k = 0; k < pcodes.length; k++) { // add the elements recursively from bottom to top
+            pcodeynk.push(dc('button'));
+            // pcodeynk[k].textContent = '<i class="far fa-copy"></i>';
+            non_block_copy_icon.push(dc('i'));
+            non_block_copy_icon[k].setAttribute('class', 'far fa-copy');
+            pcodeynk[k].appendChild(non_block_copy_icon[k]);
+            pcodeynk[k].onclick = () => {
+                navigator.clipboard.writeText(pcodes[k].textContent).then(function () {
+                    /* clipboard successfully set */
+                    let tmpok = dc('span');
+                    tmpok.textContent = '复制成功！';
+                    tmpok.style.color = '#f00';
+                    tmpok.className = 'title-bar-text';
+                    pcodeynk[k].before(tmpok);
+                    tmpok.style.fontSize = '15px';
+                }, function () {
+                    /* clipboard write failed */
+                    let tmpok = dc('span');
+                    tmpok.textContent = '复制失败！';
+                    tmpok.style.color = '#0f0';
+                    tmpok.className = 'title-bar-text';
+                    pcodeynk[k].before(tmpok);
+                    tmpok.style.fontSize = '15px';
+                });
+            }
+
+            titleBars.push(dc('div'));
+            titleBars[k].className = 'title-bar';
+            titleBarTexts.push(dc('div'));
+            titleBarTexts[k].className = 'title-bar-text';
+
+            // console.log(pcodes[k].classList);
+            titleBarTexts[k].textContent = pcodes[k].classList[1];
+            titleBarControls.push(dc('div'));
+            titleBarControls[k].className = 'title-bar-controls';
+            titleBarControls[k].appendChild(pcodeynk[k]);
+
+            titleBars[k].appendChild(titleBarTexts[k]);
+            titleBars[k].appendChild(titleBarControls[k]);
+
+            if (pcodes[k].parentNode.childElementCount === 1 && pcodes[k].textContent === pcodes[k].parentNode.textContent) {
+                pcodes[k].className = 'window-body';
+                pcodes[k].parentNode.className = 'p-codes';
+                pcodes[k].before(titleBars[k]);
+            } else {
+                pcodeynk[k].className = 'idv-ynk-btn';
+
+                pcodes[k].before(pcodeynk[k]);
+                pcodes[k].style.backgroundColor = '#ece9d8';
+                pcodes[k].style.boxShadow = 'inset 0 1px 2px grey';
+            }
         }
-        pcodes[k].before(pcodeynk[k]);
-    }
+    });
 }
 // 文章页面格式结束
 // 日期格式化输出
@@ -243,17 +289,11 @@ Date.prototype.format = function (fmt) {
         S: this.getMilliseconds(), //毫秒
     };
     if (/(y+)/.test(fmt)) {
-        fmt = fmt.replace(
-            RegExp.$1,
-            (this.getFullYear() + "").substr(4 - RegExp.$1.length)
-        );
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
     }
     for (let k in o) {
         if (new RegExp("(" + k + ")").test(fmt)) {
-            fmt = fmt.replace(
-                RegExp.$1,
-                RegExp.$1.length === 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length)
-            );
+            fmt = fmt.replace(RegExp.$1, RegExp.$1.length === 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
         }
     }
     return fmt;
@@ -525,10 +565,7 @@ function hideHeader() {
 }
 
 // to show the images
-let imgsInContainer = dqAll('#container img');
-for (let i = 0; i < imgsInContainer.length; i++) {
-    imgsInContainer[i].setAttribute('onclick', `imgsOnclick('${imgsInContainer[i].attributes.src.nodeValue}')`);
-}
+dqAll('#container img').forEach((el) => el.setAttribute('onclick', `imgsOnclick('${el.attributes.src.nodeValue}')`))
 
 function imgsOnclick(src) {
     dq('#imgdiv').style.display = 'block';

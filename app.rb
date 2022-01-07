@@ -8,6 +8,10 @@ set :haml, escape_attrs: false
 
 basic_info = '404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.'
 
+get '/home/?' do
+  haml :index
+end
+
 get '/' do
   status 302
   headers 'Location' => '/home'
@@ -30,10 +34,6 @@ get '/favicon.ico' do
   send_file './static_files/icons/duck.ico'
 end
 
-get '/home/?' do
-  haml :index
-end
-
 get '/s/?' do
   haml :result
 end
@@ -42,10 +42,10 @@ get '/notes/?' do
   haml :notes
 end
 
-get %r|/notes/(\d+)/?| do |num|
+get %r{/notes/(\d+)/?} do |num|
   begin
     haml :notes, locals: { num: num }
-  rescue => e
+  rescue StandardError => e
     haml :error, locals: { error_info: e }
   end
 end

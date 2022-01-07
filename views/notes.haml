@@ -1,16 +1,16 @@
 !!! 5
 %html{lang: 'zh-CN'}
-  %head
-    %title
-    = haml :head_part
-  %body
-    .mdtemp#wrapper
-      = haml :header
-      #container
-        - File.open("markdown/public/#{num}.md") do |f|
-        - title = f.gets
-        - title = title.split('# ')[1]
-        - f.rewind
+  - File.open("markdown/public/#{num}.md") do |f|
+    - title = f.gets
+    - title = title.split('# ')[1]
+    %head
+      %title= title
+      = haml :head_part
+    %body
+      .mdtemp#wrapper
+        = haml :header
+        #container
+          - f.rewind
           %div= markdown f.read
           -#Modified from wymcloud.cn
           .licensing-box
@@ -39,4 +39,4 @@
             .licensing-after#la-1!= '&#xf25e;&#xf4e7;&#xf4e8;&#xf4ef;'
             .licensing-after#la-2!= '&#xf25e;'
           -#Modified from wymcloud.cn
-      = haml :footer
+        = haml :footer
