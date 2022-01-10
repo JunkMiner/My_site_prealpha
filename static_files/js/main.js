@@ -230,19 +230,7 @@ if (dq('.mdtemp')) {
         let pcodeynk = [];  // now it is the xp title bar
         let pcodes = dqAll('p > code');
         let non_block_copy_icon = [];
-        let titleBars = [];
-        let titleBarTexts = [];
-        let titleBarControls = [];
-        // <div class="title-bar">
-        //   <div class="title-bar-text">
-        //     Command Prompt
-        //   </div>
-        //   <div class="title-bar-controls">
-        //     <button aria-label="Minimize"></button>
-        //     <button aria-label="Maximize"></button>
-        //     <button aria-label="Close"></button>
-        //   </div>
-        // </div>
+        
         for (let k = 0; k < pcodes.length; k++) { // add the elements recursively from bottom to top
             pcodeynk.push(dc('button'));
             // pcodeynk[k].textContent = '<i class="far fa-copy"></i>';
@@ -269,24 +257,28 @@ if (dq('.mdtemp')) {
                 });
             }
 
-            titleBars.push(dc('div'));
-            titleBars[k].className = 'title-bar';
-            titleBarTexts.push(dc('div'));
-            titleBarTexts[k].className = 'title-bar-text';
-
-            // console.log(pcodes[k].classList);
-            titleBarTexts[k].textContent = pcodes[k].classList[1];
-            titleBarControls.push(dc('div'));
-            titleBarControls[k].className = 'title-bar-controls';
-            titleBarControls[k].appendChild(pcodeynk[k]);
-
-            titleBars[k].appendChild(titleBarTexts[k]);
-            titleBars[k].appendChild(titleBarControls[k]);
-
             if (pcodes[k].parentNode.childElementCount === 1 && pcodes[k].textContent === pcodes[k].parentNode.textContent) {
-                pcodes[k].className = 'window-body';
-                pcodes[k].parentNode.className = 'p-codes';
-                pcodes[k].before(titleBars[k]);
+                pcodes[k].classList.remove('hljs');
+                pcodes[k].classList.add('window-body');
+                pcodes[k].parentNode.classList.add('p-codes');
+
+                // modify from highlightjs-line-numbers.js
+
+                try {
+                    let eachLine = pcodes[k].innerHTML.trim().split(/\r\n|\r|\n/g);
+                    let result = '';
+                    for (let i in eachLine) {
+                        result += `<tr><td class="hljs-ln-line hljs-ln-numbers"><div class="hljs-ln-n" data-line-number="${Number(i) + 1}"></div></td><td class="hljs-ln-line hljs-ln-code">${eachLine[i]}</td></tr>`;
+                    }
+                    pcodes[k].innerHTML = `<table class="hljs-ln"><tbody>${result}</tbody></table>`;
+                } catch (e) {
+                    console.error('LineNumbers error: ', e);
+                }
+
+                pcodes[k].parentNode.innerHTML = `<div class="title-bar"><div class="title-bar-text">${pcodes[k].classList[0]}</div><div class="title-bar-controls"></div></div><div class="content-bar">${pcodes[k].parentNode.innerHTML}</div>`;
+
+                dqAll('.title-bar-controls')[dqAll('.title-bar-controls').length - 1].appendChild(pcodeynk[k]);
+
             } else {
                 pcodeynk[k].className = 'idv-ynk-btn';
 
@@ -299,6 +291,12 @@ if (dq('.mdtemp')) {
         if (window.location.hash !== '') {
             dq('#wrapper').scrollTop = window.location.hash !== '' || dq(window.location.hash).offsetTop;
         }
+
+        // use mathjax
+        // let jaxScript = dc('script');
+        // jaxScript.async = 1;
+        // jaxScript.src = '/index/static_files/mathjax/3.0.1/es5/tex-mml-chtml.js';
+        // dq('head').insertBefore(jaxScript, dq('script'));
 
     });
 }

@@ -312,35 +312,6 @@ html, body {
     background-color: #ddd;
 }
 
-table {
-    border-collapse: collapse;
-    border: 2px solid rgb(200, 200, 200);
-    letter-spacing: 1px;
-    font-size: 0.8rem;
-    width: 100%;
-}
-
-td {
-    border: 1px solid rgb(190, 190, 190);
-    padding: 10px 20px;
-}
-
-tr > td:first-child {
-    max-width: 15px;
-}
-
-tr > td:nth-child(0n+2) {
-    max-width: 200px;
-}
-
-tr:nth-child(even) td {
-    background-color: rgb(250, 250, 250);
-}
-
-tr:nth-child(odd) td {
-    background-color: rgb(245, 245, 245);
-}
-
 ::-webkit-scrollbar {
     width: 12px;
     height: 12px;
@@ -418,6 +389,7 @@ h6 {
     font-family: 'Font Awesome 6 Brands';
     opacity: 0.1;
     cursor: default;
+    user-select: none;
 }
 
 /*End of the licensing box under the markdown...*/
@@ -629,6 +601,7 @@ code.hljs {
     /*margin-right: 24px;*/
     padding-left: 3px;
     cursor: default;
+    user-select: none;
 }
 
 .title-bar-controls {
@@ -650,14 +623,15 @@ code.hljs {
 }
 
 .window-body {
-    padding: 12px 8px;
+    width: calc(100% - 19px);
+    margin: 5px 8px 5px;
     display: block;
-    margin: -20px 0 0;
+    border: 2px solid rgb(200, 200, 200);
     white-space: pre;
     overflow: auto;
 }
 
-p > code {
+p > code, .window-body {
     font-family: "JetBrains Mono Regular", 'Courier New', Courier, monospace;
     font-size: 15px;
     display: inline-block;
@@ -705,4 +679,48 @@ blockquote {
 
 blockquote p {
     margin: 0;
+}
+
+/*modify from highlightjs-line-numbers.js*/
+
+.hljs-ln {
+    border-collapse: collapse;
+    min-width: 100%;
+}
+
+.hljs-ln tr > td:first-child {
+    min-width: 30px;
+    width: 30px;
+}
+
+.hljs-ln tr:nth-child(even) td {
+    background-color: rgb(250, 250, 250);
+}
+
+.hljs-ln tr:nth-child(odd) td {
+    background-color: rgb(245, 245, 245);
+}
+
+/* for block of numbers */
+.hljs-ln-numbers {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    text-align: right;
+    color: #ccc;
+    border-right: 1px solid #CCC;
+    vertical-align: top;
+    padding-right: 5px;
+}
+
+.hljs-ln-n::before {
+    content: attr(data-line-number);
+}
+
+/* for block of code */
+.hljs-ln-code {
+    padding-left: 10px;
 }
