@@ -2,7 +2,5 @@ geoipdb/
 markdown/*
 .idea
 .vscode
-__pycache__
-chglinkalpha.py
-transalpha.py
+gemfile.lock
 static_files/

@@ -10,11 +10,14 @@
     %span
       %a{href: "/index/ip/#{request.ip}"}
         %i.fas.fa-location-dot.fa-lg
+        - require 'maxmind/geoip2'
+        - begin
+          - reader = MaxMind::GeoIP2::Reader.new(database: 'geoipdb/GeoLite2-City.mmdb')
+          - record = reader.city(request.ip)
+          = record.country.names['zh-CN'] << record.subdivisions.most_specific.names['zh-CN'] << record.city.names['zh-CN']
+        - rescue => e
+          - puts e.message
         = '(IP:' << request.ip << ')'
-    %span!= '&nbsp;'
-    %span
-      %i.fas.fa-clock.fa-lg
-      = Time.now.to_s
     %span!= '&nbsp;'
     %span
       %a{href: 'https://github.com/JunkMiner', title: 'GitHub'}

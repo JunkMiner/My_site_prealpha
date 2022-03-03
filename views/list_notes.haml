@@ -1,0 +1,33 @@
+!!! 5
+%html{lang: 'zh-CN'}
+  %head
+    %title list_notes
+    = haml :head_part
+  %body
+    #wrapper
+      = haml :header
+      #container
+        - names = Dir.glob(Dir.pwd << '/markdown/public/*.md').reverse
+        - names.each do |name|
+          - File.open(name) do |f|
+            - title = f.gets.split('# ')[1]
+            %a.mdhref{title: title, href: "/index/notes/#{name.split('.')[0].split('/')[-1]}"}
+              .mdtitle
+                %i.far.fa-file-lines
+                != '&nbsp;'
+                = title
+              .mddesc
+                - desc = ''
+                - while (line = f.gets)
+                  - desc += line if desc.length < 550
+                = desc
+              .mdlm
+                %i.far.fa-calendar-plus
+                != 'Created:'
+                = f.birthtime
+                != '&nbsp;'
+                %i.far.fa-calendar-check
+                != 'Modified:'
+                = f.mtime
+            %br/
+      = haml :footer

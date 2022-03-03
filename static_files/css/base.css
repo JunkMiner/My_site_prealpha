@@ -154,23 +154,30 @@ html, body {
 .mdhref {
     text-decoration: none;
     display: block;
+    background-color: #eee;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.mdhref:hover {
+    background-color: #ddd;
 }
 
 .mdtitle {
     font-family: zillaslab, palatino, "Palatino Linotype", serif;
-    font-size: 34px;
+    font-size: 23px;
     color: #74390f;
 }
 
 .mddesc {
-    font-size: 16px;
+    font-size: 14px;
     color: #0b5a5a;
-    max-height: 100px;
+    max-height: 96px;
     overflow: hidden;
 }
 
 .mdlm {
-    font-size: 16px;
+    font-size: 14px;
     color: rgb(71, 37, 71);
     text-align: right;
     font-family: "JetBrains Mono Regular", 'Courier New', Courier, monospace;
