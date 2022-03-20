@@ -3,10 +3,15 @@
     %title 狗鸭笔记
     %link https://zjm.gd.cn
     %description 狗鸭笔记
-    - 3.times do |i|
-      %item
-        %title= i
-        %link= "https://zjm.gd.cn/notes/#{i}"
-        %description= ""
-        %pubDate= Time.now.to_s
-        %lastBuildDate= Time.now.to_s
+    - names = Dir.glob(Dir.pwd << '/markdown/public/*.md').reverse
+    - names.each do |name|
+      - File.open(name) do |f|
+        %item
+          %title= f.gets.split('# ')[1]
+          %link= "https://zjm.gd.cn/notes/#{name.split('.')[0].split('/')[-1]}"
+          - desc = ''
+          - while (line = f.gets)
+            - desc += line if desc.length < 500
+          %description= "#{desc.gsub("\n", ' ').gsub('<', '&lt;').gsub('>', '&gt;').gsub('&', '&amp;').gsub("'", '&apos;').gsub('"', '&quot;').gsub(/-{3,}|```\w+/, '')}..."
+          %pubDate= f.birthtime
+          %lastBuildDate= f.mtime

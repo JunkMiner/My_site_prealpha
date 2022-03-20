@@ -11,13 +11,13 @@
         = haml :header
         #container
           - f.rewind
-          %div= markdown f.read
+          %div= "#{markdown(f.read).gsub(/-{3,}|```\w+/, '')}..."
           -#Modified from wymcloud.cn
           .licensing-box
             .licensing-title
               %p=title
               %p
-                %a{href: 'https://zjm.gd.cn/index' << request.path.split('?')[0].split('#')[0]}= 'https://zjm.gd.cn/index' << request.path.split('?')[0].split('#')[0]
+                %a{href: 'https://zjm.gd.cn' << request.path.split('?')[0].split('#')[0]}= 'https://zjm.gd.cn' << request.path.split('?')[0].split('#')[0]
             %div
               .level-item
                 %div

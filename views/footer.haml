@@ -8,7 +8,7 @@
         %i.fa-brands.fa-creative-commons-sa.fa-lg
     %span!= '&nbsp;'
     %span
-      %a{href: "/index/ip/#{request.ip}"}
+      %a{href: "ip/#{request.ip}"}
         %i.fas.fa-location-dot.fa-lg
         - require 'maxmind/geoip2'
         - begin

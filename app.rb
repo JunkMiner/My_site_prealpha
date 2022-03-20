@@ -7,28 +7,21 @@ class MyApp < Sinatra::Base
   # use this to display the fontawesome icons in the attrs
   set :haml, escape_attrs: false
 
+  Tilt.prefer Tilt::RDiscountTemplate
+
   basic_info = '404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.'
 
-  get '/home/?' do
+  get %r{/|/home/?} do
     haml :index
   end
 
-  get '/' do
-    status 302
-    headers 'Location' => '/home'
-  end
-
-  get '/index/static_files/*' do |path|
+  get %r{(/index)?/static_files/(.+)} do |_, path|
     send_file "./static_files/#{path}"
   end
 
   get '/index/*' do |path|
     status 301
     headers 'Location' => "/#{path}"
-  end
-
-  get '/static_files/*' do |path|
-    send_file "./static_files/#{path}"
   end
 
   get '/favicon.ico' do
@@ -58,7 +51,7 @@ class MyApp < Sinatra::Base
 
   get '/rss/?' do
     headers 'Content-Type' => 'application/xml'
-    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" << haml(:rss)
+    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n#{haml(:rss)}"
   end
 
   not_found do
@@ -66,6 +59,6 @@ class MyApp < Sinatra::Base
   end
 
   error do
-    'Sorry there was a nasty error - ' << env['sinatra.error'].message
+    "Sorry there was a nasty error - #{env['sinatra.error'].message}"
   end
 end

@@ -615,6 +615,7 @@ code.hljs {
     display: flex;
 }
 
+/*the yank buttons in the code blocks*/
 .title-bar-controls button {
     min-width: 21px;
     min-height: 21px;
@@ -652,6 +653,7 @@ p > code, .window-body {
     background-color: #ece9d8;
 }
 
+/*individual yank buttons ( the buttons in paragraphs )*/
 .idv-ynk-btn {
     box-shadow: 0 1px 2px grey;
     border-radius: 0;

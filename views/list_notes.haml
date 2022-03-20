@@ -11,7 +11,7 @@
         - names.each do |name|
           - File.open(name) do |f|
             - title = f.gets.split('# ')[1]
-            %a.mdhref{title: title, href: "/index/notes/#{name.split('.')[0].split('/')[-1]}"}
+            %a.mdhref{title: title, href: "/notes/#{name.split('.')[0].split('/')[-1]}"}
               .mdtitle
                 %i.far.fa-file-lines
                 != '&nbsp;'
