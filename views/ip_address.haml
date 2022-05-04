@@ -1,0 +1,29 @@
+%pre
+  - require 'maxmind/geoip2'
+  - begin
+    - reader = MaxMind::GeoIP2::Reader.new(database: 'geoipdb/GeoLite2-City.mmdb')
+    - record = reader.city(ip_address)
+    - result = |
+      "require 'maxmind/geoip2'\n\n" + |
+      "record.city.confidence                        #{record.city.confidence}\n" + |
+      "record.city.names['zh-CN']                    #{record.city.names ? record.city.names['zh-CN'] : ''}\n" + |
+      "record.continent.code                         #{record.continent.code}\n" + |
+      "record.continent.names['zh-CN']               #{record.continent.names['zh-CN']}\n" + |
+      "record.country.confidence                     #{record.country.confidence}\n" + |
+      "record.country.iso_code                       #{record.country.iso_code}\n" + |
+      "record.country.names['zh-CN']                 #{record.country.names['zh-CN']}\n" + |
+      "record.location.accuracy_radius               #{record.location.accuracy_radius}\n" + |
+      "record.location.average_income                #{record.location.average_income}\n" + |
+      "record.location.latitude                      #{record.location.latitude}\n" + |
+      "record.location.longitude                     #{record.location.longitude}\n" + |
+      "record.location.metro_code                    #{record.location.metro_code}\n" + |
+      "record.location.population_density            #{record.location.population_density}\n" + |
+      "record.location.time_zone                     #{record.location.time_zone}\n" + |
+      "record.postal.confidence                      #{record.postal.confidence}\n" + |
+      "record.postal.code                            #{record.postal.code}\n" + |
+      "record.registered_country.names['zh-CN']      #{record.registered_country.names['zh-CN']}\n" + |
+      "record.subdivisions[0].names['zh-CN']         #{record.subdivisions[0] ? record.subdivisions[0].names['zh-CN'] : ''}\n" + |
+      "record.traits.network                         #{record.traits.network}\n" |
+    &= result
+  - rescue => e
+    &= e.message

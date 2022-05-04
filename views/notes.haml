@@ -11,7 +11,7 @@
         = haml :header
         #container
           - f.rewind
-          %div= "#{markdown(f.read).gsub(/-{3,}|```\w+/, '')}..."
+          %div= "#{markdown(f.read).gsub(/-{3,}|```\w+/, '')}"
           -#Modified from wymcloud.cn
           .licensing-box
             .licensing-title

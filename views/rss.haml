@@ -12,6 +12,6 @@
           - desc = ''
           - while (line = f.gets)
             - desc += line if desc.length < 500
-          %description= "#{desc.gsub("\n", ' ').gsub('<', '&lt;').gsub('>', '&gt;').gsub('&', '&amp;').gsub("'", '&apos;').gsub('"', '&quot;').gsub(/-{3,}|```\w+/, '')}..."
+          %description&= "#{desc.gsub(/-{3,}|```\w+/, '')}..."
           %pubDate= f.birthtime
           %lastBuildDate= f.mtime

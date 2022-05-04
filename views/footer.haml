@@ -8,13 +8,13 @@
         %i.fa-brands.fa-creative-commons-sa.fa-lg
     %span!= '&nbsp;'
     %span
-      %a{href: "ip/#{request.ip}"}
+      %a{href: "/ip/#{request.ip}"}
         %i.fas.fa-location-dot.fa-lg
         - require 'maxmind/geoip2'
         - begin
           - reader = MaxMind::GeoIP2::Reader.new(database: 'geoipdb/GeoLite2-City.mmdb')
           - record = reader.city(request.ip)
-          = record.country.names['zh-CN'] << record.subdivisions.most_specific.names['zh-CN'] << record.city.names['zh-CN']
+          = (record.country.names ? record.country.names['zh-CN'] : '') + (record.subdivisions[0] ? record.subdivisions[0].names['zh-CN'] : '') + (record.city.names ? record.city.names['zh-CN'] : '')
         - rescue => e
           - puts e.message
         = '(IP:' << request.ip << ')'

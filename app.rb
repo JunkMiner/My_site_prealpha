@@ -54,6 +54,10 @@ class MyApp < Sinatra::Base
     "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n#{haml(:rss)}"
   end
 
+  get '/ip/*/?' do |ip|
+    haml :ip_address, locals: { ip_address: ip }
+  end
+
   not_found do
     haml :error, locals: { error_info: basic_info, status_num: '404' }
   end
