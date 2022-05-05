@@ -3,11 +3,4 @@ geoipdb/
 .vscode/
 .bundle/
 gemfile.lock
-/static_files/
-!/static_files/css/
-!/static_files/js/
-!/static_files/font-awesome/
-!/static_files/highlight.js/
-!/static_files/icons/
-!/static_files/mathjax/
 vendor/
