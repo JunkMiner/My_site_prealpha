@@ -1,7 +1,0 @@
-# geoipdb/
-.idea/
-.vscode/
-.bundle/
-gemfile.lock
-# static_files/
-vendor/
